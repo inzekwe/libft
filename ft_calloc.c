@@ -6,7 +6,7 @@
 /*   By: inzekwe <inzekwe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 21:01:40 by inzekwe           #+#    #+#             */
-/*   Updated: 2026/06/16 21:01:44 by inzekwe          ###   ########.fr       */
+/*   Updated: 2026/06/17 16:37:42 by inzekwe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
+	if (count != 0 && size > (size_t)-1 / count)
+		return (NULL);
 	ptr = malloc(count * size);
 	if (!ptr)
 		return (NULL);
