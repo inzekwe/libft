@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inzekwe <inzekwe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 17:51:26 by inzekwe           #+#    #+#             */
-/*   Updated: 2026/06/20 19:03:54 by inzekwe          ###   ########.fr       */
+/*   Created: 2026/06/17 18:26:26 by inzekwe           #+#    #+#             */
+/*   Updated: 2026/06/18 13:21:49 by inzekwe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t		src_len;
-	size_t		i;
+	long int	num;
 
-	src_len = ft_strlen(src);
-	if (size == 0)
-		return (src_len);
-	i = 0;
-	while (src[i] != '\0' && i < (size - 1))
+	num = n;
+	if (num < 0)
 	{
-		dest[i] = src[i];
-		i++;
+		ft_putchar_fd('-', fd);
+		num = -num;
 	}
-	dest[i] = '\0';
-	return (src_len);
+	if (num > 9)
+		ft_putnbr_fd(num / 10, fd);
+	ft_putchar_fd((num % 10) + '0', fd);
 }
